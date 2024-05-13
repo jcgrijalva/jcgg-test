@@ -22,7 +22,6 @@
   align-items: center;
   text-align: center;
   top: 80px;
-  left: 50px;
 }
 .inputplate {
   align-content: center;
@@ -44,8 +43,8 @@
   color: #2b84bb;
 }
 .profile-img-upload {
-  height: 24px;
-  width: 24px;
+  height: 70px;
+  width: 300px;
 }
 .text-2 {
   position: relative;
