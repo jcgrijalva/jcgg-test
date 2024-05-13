@@ -1,0 +1,17 @@
+.loading {
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+}
+.img-2 {
+  height: 274px;
+  width: 267px;
+}
+.text-2 {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 35px;
+  font-family: Poppins;
+  line-height: auto;
+  color: #185a7d;
+}
