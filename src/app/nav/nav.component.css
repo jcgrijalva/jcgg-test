@@ -2,6 +2,7 @@
   position: relative;
   left: 60px;
   width: 545px;
+  height: 100px;
 }
 .text-1 {
   position: relative;
@@ -20,12 +21,11 @@
   width: 24px;
 }
 .text-3 {
-  top: -20px;
+  top: 20px;
   left: 30px;
   position: relative;
   vertical-align: middle;
   font-size: 18px;
-  font-family: Poppins;
   line-height: auto;
   color: #858585;
 }

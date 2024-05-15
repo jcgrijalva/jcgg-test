@@ -1,0 +1,55 @@
+<div class="form-section">
+  <span class="text-info">Tu información</span>
+  <span
+    class="text-instruction"
+  >Completa la siguiente información para completar tu perfil</span>
+  <form class="profile-form">
+
+    <mat-form-field appearance="outline"  class="profile-input">
+      <mat-label>Nombre*</mat-label>
+      <input matInput placeholder="Nombre*">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="profile-input">
+      <mat-label>Pasatiempo favorito</mat-label>
+      <mat-chip-grid #chipGrid aria-label="seleccione">
+        @for (fruit of fruits; track fruit) {
+          <mat-chip-row (removed)="remove(fruit)">
+            {{fruit}}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input placeholder="Pasatiempo favorito" #fruitInput [formControl]="fruitCtrl"
+             [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             (matChipInputTokenEnd)="add($event)"/>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        @for (fruit of filteredFruits | async; track fruit) {
+          <mat-option [value]="fruit">{{fruit}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline"  class="profile-input">
+      <mat-label>Cumpleaños*</mat-label>
+      <input matInput placeholder="Cumpleaños*" [min]="minDate" [max]="maxDate"  [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline"  class="profile-input">
+      <mat-label>Documento*</mat-label>
+      <input matInput placeholder="Documento*">
+    </mat-form-field>
+
+    <section>
+      <div class="profile-form-button">
+        <button mat-stroked-button>Continuar</button>
+      </div>
+    </section>
+</form>
+</div>
