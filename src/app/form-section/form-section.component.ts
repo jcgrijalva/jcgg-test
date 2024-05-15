@@ -2,7 +2,7 @@ import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatAnchor, MatButton} from "@angular/material/button";
-import {MatChipEditedEvent, MatChipGrid, MatChipInput, MatChipInputEvent, MatChipRow} from "@angular/material/chips";
+import {MatChipGrid, MatChipInput, MatChipInputEvent, MatChipRow} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
@@ -16,13 +16,28 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
-
+const CUSTOM_DATE_FORMAT = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MMM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+};
 @Component({
   selector: 'app-form-section',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(),
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT }
+  ],
   imports: [MatInputModule, MatFormFieldModule, MatButton, MatAnchor, MatChipGrid, MatChipRow, MatChipInput, MatIcon, MatAutocomplete, MatOption, ReactiveFormsModule, MatAutocompleteTrigger, AsyncPipe, MatDatepickerToggle, MatDatepickerInput, MatDatepicker],
   templateUrl: './form-section.component.html',
   styleUrl: './form-section.component.css'

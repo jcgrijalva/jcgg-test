@@ -1,8 +1,7 @@
 .header {
   position: relative;
-  left: 50px;
+  margin-left: 50px;
   height: 150px;
-  width: 100%;
   background-color: #ffffff;
 }
 .img-1 {

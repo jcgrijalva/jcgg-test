@@ -6,8 +6,8 @@
   <form class="profile-form">
 
     <mat-form-field appearance="outline"  class="profile-input">
-      <mat-label>Nombre*</mat-label>
-      <input matInput placeholder="Nombre*">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="profile-input">
@@ -35,21 +35,21 @@
 
 
     <mat-form-field appearance="outline"  class="profile-input">
-      <mat-label>Cumpleaños*</mat-label>
-      <input matInput placeholder="Cumpleaños*" [min]="minDate" [max]="maxDate"  [matDatepicker]="picker">
+      <mat-label>Cumpleaños</mat-label>
+      <input matInput placeholder="Cumpleaños" [min]="minDate" [max]="maxDate"  [matDatepicker]="picker" required>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline"  class="profile-input">
-      <mat-label>Documento*</mat-label>
-      <input matInput placeholder="Documento*">
+      <mat-label>Documento</mat-label>
+      <input matInput placeholder="Documento" required>
     </mat-form-field>
 
     <section>
-      <div class="profile-form-button">
-        <button mat-stroked-button>Continuar</button>
+      <div style="text-align: center">
+        <button mat-flat-button class="profile-form-button" color="primary">Continuar</button>
       </div>
     </section>
-</form>
+  </form>
 </div>

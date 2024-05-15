@@ -1,27 +1,29 @@
 .form-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  align-items: flex-start;
+  margin-top: 10px;
+  align-content: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
   gap: 0px;
   box-sizing: border-box;
   font-family: sans-serif;
 }
 .text-info {
-  color: #000000;
+  display: block;
+  color: #185a7d;
   font-size: 30px;
   line-height: 48px;
   letter-spacing: 0%;
   text-decoration: none;
   font-weight: 400;
   text-align: left;
-  text-wrap: wrap;
   width: 349px;
 }
 
 .text-instruction {
-  color: #000000;
+  margin-top: 10px;
+  display: block;
+  color: #858585;
   font-size: 18px;
   letter-spacing: 0%;
   text-decoration: none;
@@ -32,13 +34,19 @@
 }
 .profile-form{
   position: relative;
-  top: 20px;
+  margin-top: 40px;
 }
 .profile-input{
   min-width: 300px;
   display: block;
   top: 10px;
+  margin-bottom: 10px;
 }
 .profile-form-button{
+  margin-top: 25px;
+  background-color: #858585;
   width: 200px;
+  min-width: 200px;
+  height: 50px;
+  font-size: medium;
 }

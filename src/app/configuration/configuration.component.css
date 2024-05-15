@@ -1,8 +1,15 @@
 .config-section{
-  margin-top: 30px;
 }
 
 .ver-50-percent{
+  display: inline-flex;
   position: relative;
-  width: 50%;
+  width: 49%;
+  justify-content: center;
+}
+.x-left{
+  align-items: center;
+}
+.x-right{
+  align-items: center;
 }
