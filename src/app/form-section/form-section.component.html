@@ -3,7 +3,7 @@
   <span
     class="text-instruction"
   >Completa la siguiente información para completar tu perfil</span>
-  <form class="profile-form">
+  <form id="profileForm" class="profile-form" #formCtrl="ngForm">
 
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Nombre</mat-label>
@@ -28,7 +28,8 @@
              (matChipInputTokenEnd)="add($event)"/>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
         @for (fruit of filteredFruits | async; track fruit) {
-          <mat-option [value]="fruit">{{fruit}}</mat-option>
+          <mat-option [value]="fruit" class="chips-option">{{fruit}}</mat-option>
+          <mat-divider class="chips-separator"></mat-divider>
         }
       </mat-autocomplete>
     </mat-form-field>
@@ -43,13 +44,14 @@
 
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Documento</mat-label>
-      <input matInput placeholder="Documento" required>
+      <input matInput placeholder="documento" name="documento"
+             [(ngModel)]="documento"  ngModel pattern="(\d{8})-(\d{1})" required>
     </mat-form-field>
 
-    <section>
-      <div style="text-align: center">
-        <button mat-flat-button class="profile-form-button" color="primary">Continuar</button>
-      </div>
-    </section>
+
+    <div style="text-align: center">
+      <button type="submit" mat-flat-button class="profile-form-button" color="primary"
+              [disabled]="!formCtrl.form.valid">Continuar</button>
+    </div>
   </form>
 </div>

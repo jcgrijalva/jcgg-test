@@ -50,3 +50,14 @@
   height: 50px;
   font-size: medium;
 }
+
+.chips-separator{
+  background-color: #A2E3FF;
+}
+.chips-option{
+  color: #185A7D;
+}
+.chips-option:hover{
+  background-color: #E7EFF5 !important;
+}
+

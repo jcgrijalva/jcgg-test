@@ -12,7 +12,7 @@ import {
   MatAutocompleteTrigger,
   MatOption
 } from "@angular/material/autocomplete";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {map, Observable, startWith} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
@@ -20,6 +20,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
+import {User} from "../model/user";
+import {MatDivider} from "@angular/material/divider";
 const CUSTOM_DATE_FORMAT = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -38,7 +40,9 @@ const CUSTOM_DATE_FORMAT = {
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT }
   ],
-  imports: [MatInputModule, MatFormFieldModule, MatButton, MatAnchor, MatChipGrid, MatChipRow, MatChipInput, MatIcon, MatAutocomplete, MatOption, ReactiveFormsModule, MatAutocompleteTrigger, AsyncPipe, MatDatepickerToggle, MatDatepickerInput, MatDatepicker],
+  imports: [MatInputModule, MatFormFieldModule, MatButton, MatAnchor, MatChipGrid, MatChipRow,
+    MatChipInput, MatIcon, MatAutocomplete, MatOption, ReactiveFormsModule, MatAutocompleteTrigger,
+    AsyncPipe, MatDatepickerToggle, MatDatepickerInput, MatDatepicker, MatDivider, FormsModule],
   templateUrl: './form-section.component.html',
   styleUrl: './form-section.component.css'
 })
@@ -46,7 +50,8 @@ export class FormSectionComponent {
 
   minDate: Date | undefined;
   maxDate: Date | undefined;
-
+  public user: User | undefined;
+  public documento = '' ;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -103,5 +108,12 @@ export class FormSectionComponent {
     const filterValue = value.toLowerCase();
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+  formatDoc() {
+    const regex = /^(\d{8})-(\d{1})$/;
+    if (regex.test(this.documento)) {
+      this.documento = this.documento.replace(regex, '$1-$2');
+    }
   }
 }
