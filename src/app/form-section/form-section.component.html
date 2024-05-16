@@ -1,22 +1,23 @@
 <div class="form-section">
+
   <span class="text-info">Tu información</span>
   <span
     class="text-instruction"
   >Completa la siguiente información para completar tu perfil</span>
-  <form id="profileForm" class="profile-form" #formCtrl="ngForm">
+  <form id="profileForm" class="profile-form" #formCtrl="ngForm" (ngSubmit)="sendInfo()">
 
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre" required>
+      <input matInput placeholder="Nombre" [(ngModel)]="uname" name="uname" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="profile-input">
       <mat-label>Pasatiempo favorito</mat-label>
       <mat-chip-grid #chipGrid aria-label="seleccione">
-        @for (fruit of fruits; track fruit) {
-          <mat-chip-row (removed)="remove(fruit)">
-            {{fruit}}
-            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+        @for (choose of chooses; track choose) {
+          <mat-chip-row (removed)="remove(choose)">
+            {{choose}}
+            <button matChipRemove [attr.aria-label]="'remove ' + choose">
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
@@ -37,21 +38,21 @@
 
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Cumpleaños</mat-label>
-      <input matInput placeholder="Cumpleaños" [min]="minDate" [max]="maxDate"  [matDatepicker]="picker" required>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <input matInput placeholder="Cumpleaños" [min]="minDate" [max]="maxDate"  [matDatepicker]="picker"
+             [(ngModel)]="birthday" name="birth" required>
+      <mat-datepicker-toggle matIconSuffix matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Documento</mat-label>
       <input matInput placeholder="documento" name="documento"
-             [(ngModel)]="documento"  ngModel pattern="(\d{8})-(\d{1})" required>
+             [(ngModel)]="doc"  ngModel pattern="(\d{8})-(\d{1})" required>
     </mat-form-field>
-
 
     <div style="text-align: center">
       <button type="submit" mat-flat-button class="profile-form-button" color="primary"
-              [disabled]="!formCtrl.form.valid">Continuar</button>
+              [disabled]="!formCtrl.form.valid" >Continuar</button>
     </div>
   </form>
 </div>

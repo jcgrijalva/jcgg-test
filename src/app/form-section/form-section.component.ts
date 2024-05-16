@@ -51,22 +51,25 @@ export class FormSectionComponent {
   minDate: Date | undefined;
   maxDate: Date | undefined;
   public user: User | undefined;
-  public documento = '' ;
+  public doc = '' ;
+  public birthday = '' ;
+  public uname = '' ;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;
-  fruits: string[] = [];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  chooses: string[] = [];
+  allChooses: string[] = ['Jugar Fútbol', 'Jugar Basketball', 'Jugar Tennis', 'Jugar Voleibol', 'Jugar Fifa', 'Jugar videojuegos'];
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement> | undefined;
 
   announcer = inject(LiveAnnouncer);
 
-  constructor() {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('es');
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allChooses.slice())),
     );
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 18, 0, 1);
@@ -78,7 +81,7 @@ export class FormSectionComponent {
 
     // Add our fruit
     if (value) {
-      this.fruits.push(value);
+      this.chooses.push(value);
     }
 
     // Clear the input value
@@ -88,17 +91,17 @@ export class FormSectionComponent {
   }
 
   remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+    const index = this.chooses.indexOf(fruit);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.chooses.splice(index, 1);
 
       this.announcer.announce(`Removed ${fruit}`);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
+    this.chooses.push(event.option.viewValue);
     // @ts-ignore
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
@@ -107,13 +110,16 @@ export class FormSectionComponent {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+    return this.allChooses.filter(choose => choose.toLowerCase().includes(filterValue));
   }
 
-  formatDoc() {
-    const regex = /^(\d{8})-(\d{1})$/;
-    if (regex.test(this.documento)) {
-      this.documento = this.documento.replace(regex, '$1-$2');
-    }
+  sendInfo() {
+    console.log("Submit info");
+    localStorage.setItem('nombre', this.uname);
+    localStorage.setItem('cumple', this.birthday);
+    localStorage.setItem('documento', this.doc);
+    // @ts-ignore
+    localStorage.setItem('pasatiempos', this.chooses);
   }
+
 }
