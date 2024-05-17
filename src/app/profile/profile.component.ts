@@ -50,14 +50,18 @@ export class ProfileComponent {
       this.actionMsg = selectedFile.name;
       this.deleteIcon = "/assets/delete-profile-img.png";
       this.uploadIcon = "";
+      localStorage.setItem('profileImg', this.profileImage);
     }
     this.message = '';
   }
 
-  deleteImg(){
+  resetImg(){
+    console.log("reset");
     this.profileImage = "/assets/profile-img.png";
     this.deleteIcon = "";
     this.uploadIcon = "/assets/upload-icon.png";
     this.actionMsg = "Adjunta una foto";
+    this.imgStyle = ""
+    localStorage.setItem('profileImg', '');
   }
 }

@@ -12,13 +12,13 @@
         <div class="upload-msg">{{message}}</div>
         <div class="action-icon" >
           <img src="{{uploadIcon}}" onClick="uploader.click()"/>
-          <img src="{{deleteIcon}}" onClick="cleanImg.click()"/>
+          <img src="{{deleteIcon}}" onClick="cleanImg.click(); uploader.value = null;"/>
         </div>
       </div>
     </div>
 
     <input type="file" id="uploader" (change)="onFileChoose($event)" hidden="hidden" >
-    <input type="button" id="cleanImg" (click)="deleteImg()" hidden="hidden" >
+    <input type="button" id="cleanImg" (click)="resetImg()" hidden="hidden" >
 
   </div>
 </div>

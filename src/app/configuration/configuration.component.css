@@ -1,15 +1,38 @@
 .config-section{
+
 }
 
-.ver-50-percent{
-  display: inline-flex;
-  position: relative;
-  width: 49%;
-  justify-content: center;
+.frame-2{
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0px;
+  box-sizing: border-box;
 }
-.x-left{
-  align-items: center;
+.text-pok{
+  color: #185a7d;
+  font-size: 30px;
+  font-family: sans-serif;
+  line-height: 48px;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  text-wrap: wrap;
+  width: 349px;
 }
-.x-right{
-  align-items: center;
+
+.text-selecciona{
+  color: #185a7d;
+  font-size: 18px;
+  font-family: sans-serif;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  width: 521px;
+  height: 39px;
 }

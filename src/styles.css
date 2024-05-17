@@ -1,3 +1,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ver-50-percent{
+  display: inline-flex;
+  position: relative;
+  width: 49%;
+  justify-content: center;
+}
+.x-left{
+  align-items: center;
+}
+.x-right{
+  align-items: center;
+}
+

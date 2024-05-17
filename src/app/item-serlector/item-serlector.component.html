@@ -1,0 +1,33 @@
+
+<mat-grid-list cols="3" rowHeight="1:1"  class="item-selector">
+  @for (choose of chooses; track choose) {
+    <mat-grid-tile id="{{choose}}" >
+
+        <div class="rectangle-2">
+          <svg
+            width="164"
+            height="107"
+            viewBox="0 0 164 107"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              y="0.230469"
+              width="163.437"
+              height="106.352"
+              rx="20"
+              fill="#F2F2F2"
+            />
+          </svg>
+        </div>
+        <div class="frame-1">
+          <span class="text-4">#00{{choose}}</span>
+          <span class="text-5">{{ names.get(choose) }}</span>
+        </div>
+        <div class="image-2">
+          <img src="assets/pokemon/{{choose}}.png"  alt="{{choose}}"/>
+        </div>
+
+    </mat-grid-tile>
+  }
+</mat-grid-list>

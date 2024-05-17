@@ -22,6 +22,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {User} from "../model/user";
 import {MatDivider} from "@angular/material/divider";
+import {Router} from "@angular/router";
 const CUSTOM_DATE_FORMAT = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -65,7 +66,7 @@ export class FormSectionComponent {
 
   announcer = inject(LiveAnnouncer);
 
-  constructor(private dateAdapter: DateAdapter<Date>) {
+  constructor(private dateAdapter: DateAdapter<Date>,private router: Router) {
     this.dateAdapter.setLocale('es');
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -120,6 +121,7 @@ export class FormSectionComponent {
     localStorage.setItem('documento', this.doc);
     // @ts-ignore
     localStorage.setItem('pasatiempos', this.chooses);
+    this.router.navigate([`/loading`]);
   }
 
 }
