@@ -23,6 +23,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {User} from "../model/user";
 import {MatDivider} from "@angular/material/divider";
 import {Router} from "@angular/router";
+import {AppService} from "../app.service";
 const CUSTOM_DATE_FORMAT = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -51,10 +52,12 @@ export class FormSectionComponent {
 
   minDate: Date | undefined;
   maxDate: Date | undefined;
-  public user: User | undefined;
+  public edad: string = '';
   public doc = '' ;
   public birthday = '' ;
   public uname = '' ;
+  tipoDocumento: string = 'Documento'
+  docPattern: string = "(\\d{8})-(\\d{1})";
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -66,14 +69,22 @@ export class FormSectionComponent {
 
   announcer = inject(LiveAnnouncer);
 
-  constructor(private dateAdapter: DateAdapter<Date>,private router: Router) {
+  constructor(private dateAdapter: DateAdapter<Date>,private router: Router, private appService : AppService) {
+
     this.dateAdapter.setLocale('es');
+    this.appService.getEdad.subscribe(ed => this.edad = ed);
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allChooses.slice())),
     );
     const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 18, 0, 1);
+    if(this.edad == "Menor") {
+      this.minDate = new Date(currentYear - 18, 0, 1);
+      this.docPattern='';
+      this.tipoDocumento='Carnet de minoridad';
+    }else{
+      this.minDate = new Date(currentYear - 120, 0, 1);
+    }
     this.maxDate = new Date(currentYear + 0, 0, 1);
   }
 

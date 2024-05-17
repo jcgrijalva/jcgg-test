@@ -21,16 +21,19 @@ export class IndexComponent {
   edad : string = '';
 
   constructor(private appService : AppService, private router: Router) {
-    this.appService.getEdad.subscribe(ed => this.edad);
+    this.appService.getEdad.subscribe(ed => this.edad = ed);
   }
 
   goToConfFull(){
     this.appService.setEdad("Mayor");
+    console.log(this.edad);
     this.router.navigate([`/home`]);
   }
 
   goToConfLimited(){
     this.appService.setEdad("Menor");
+
+    console.log(this.edad);
     this.router.navigate([`/home`]);
   }
 }

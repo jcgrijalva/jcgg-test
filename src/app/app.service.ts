@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class AppService {
 
-  private edad = new BehaviorSubject("menor");
+  private edad = new BehaviorSubject("Menor");
   getEdad = this.edad.asObservable();
   constructor() { }
 
