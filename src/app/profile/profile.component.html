@@ -1,7 +1,7 @@
 <div class="profile">
   <div class="rectangle-1" >
 
-    <p class="text-2">Imágen perfil</p>
+    <p class="text-2">{{infoTitle}}</p>
     <div class="profile-img">
         <img src="{{profileImage}}" class="img-4" style="{{imgStyle}}"/>
     </div>
@@ -20,9 +20,9 @@
     </div>
     <ng-template #showProfileInfo>
       <div class="user-info" >
-        <p class="text-info">Nombre: {{user?.username}}</p>
+        <p class="text-info">Pasatiempo: {{user?.hobbies}}</p>
         <p class="text-info">Edad: {{user?.birthdate}}</p>
-        <p class="text-info">Hobbies: {{user?.hobbies}}</p>
+        <p *ngIf="edad=='Mayor'" class="text-info">DUI: {{user?.document}}</p>
       </div>
     </ng-template>
 

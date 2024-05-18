@@ -21,23 +21,27 @@ export class ProfileComponent {
   public uploadIcon = "/assets/upload-icon.png";
   public deleteIcon = "";
   public actionMsg = "Adjunta una foto";
+  public infoTitle: string | undefined = "Imágen perfil";
   public displayConf = true;
   tmpImg = '';
   modo : string = '';
   user: User | undefined ;
+  edad: string = "Menor";
 
   constructor(private appService: AppService) {
 
     this.appService.getModoProfile.subscribe(mod => this.modo = mod);
     this.appService.getImgProfile.subscribe(img => this.tmpImg = img);
     this.appService.getUserInfo.subscribe(usr => this.user = usr);
-    console.log(this.modo);
+    this.appService.getEdad.subscribe(eda => this.edad = eda);
+
     if(this.tmpImg != ""){
       this.profileImage = this.tmpImg;
       this.imgStyle = "border-radius: 50%; background-color: #ffffff; padding: 10px;"
     }
     if(this.modo == "Profile"){
       this.displayConf = false;
+      this.infoTitle = this.user?.username;
       console.log(this.displayConf)
     }
   }
