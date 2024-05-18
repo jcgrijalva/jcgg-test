@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatChipRow} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
-import {Pokemon} from "../model/pokemon";
-import {ApiService} from "../service/api.service";
 
 @Component({
   selector: 'app-item-serlector',

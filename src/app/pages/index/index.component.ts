@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatButton} from "@angular/material/button";
-import {AppService} from "../app.service";
+import {AppService} from "../../app.service";
 import {Router} from "@angular/router";
 import {ConfigurationComponent} from "../configuration/configuration.component";
 import {ItemSerlectorComponent} from "../item-serlector/item-serlector.component";

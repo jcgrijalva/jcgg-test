@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {AppService} from "../app.service";
+import {AppService} from "../../app.service";
 import {NgIf} from "@angular/common";
-import {User} from "../model/user";
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-profile',

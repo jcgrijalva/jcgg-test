@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from "./header/header.component";
-import {LoadingComponent} from "./loading/loading.component";
-import {ConfigurationComponent} from "./configuration/configuration.component";
-import {NavComponent} from "./nav/nav.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {HomeComponent} from "./home/home.component";
+import {HeaderComponent} from "./pages/header/header.component";
+import {LoadingComponent} from "./pages/loading/loading.component";
+import {ConfigurationComponent} from "./pages/configuration/configuration.component";
+import {NavComponent} from "./pages/nav/nav.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
+import {HomeComponent} from "./pages/home/home.component";
 import {MatButton} from "@angular/material/button";
 import {Router} from "@angular/router";
-import {ItemSerlectorComponent} from "./item-serlector/item-serlector.component";
+import {ItemSerlectorComponent} from "./pages/item-serlector/item-serlector.component";
 
 @Component({
   selector: 'app-root',
