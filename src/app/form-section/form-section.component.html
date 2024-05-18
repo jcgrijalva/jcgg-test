@@ -47,7 +47,7 @@
     <mat-form-field appearance="outline"  class="profile-input">
       <mat-label>Documento</mat-label>
       <input matInput placeholder="{{tipoDocumento}}" name="documento"
-             [(ngModel)]="doc"  ngModel pattern="{{docPattern}}" required>
+             [(ngModel)]="doc"  ngModel pattern="{{docPattern}}" [required]="req">
     </mat-form-field>
 
     <div style="text-align: center">

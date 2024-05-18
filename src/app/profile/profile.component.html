@@ -6,16 +6,25 @@
         <img src="{{profileImage}}" class="img-4" style="{{imgStyle}}"/>
     </div>
 
-    <div class="input-attached_10-419" style="{{displayConf}}">
-      <div class="input-plate_I10-419-1788-8935">
-        <span class="text-1">{{actionMsg}}</span>
-        <div class="upload-msg">{{message}}</div>
-        <div class="action-icon" >
-          <img src="{{uploadIcon}}" onClick="uploader.click()"/>
-          <img src="{{deleteIcon}}" onClick="cleanImg.click(); uploader.value = null;"/>
+    <div *ngIf="displayConf else showProfileInfo">
+      <div class="input-attached_10-419" >
+        <div class="input-plate_I10-419-1788-8935">
+          <span class="text-1">{{actionMsg}}</span>
+          <div class="upload-msg">{{message}}</div>
+          <div class="action-icon" >
+            <img src="{{uploadIcon}}" onClick="uploader.click()"/>
+            <img src="{{deleteIcon}}" onClick="cleanImg.click(); uploader.value = null;"/>
+          </div>
         </div>
       </div>
     </div>
+    <ng-template #showProfileInfo>
+      <div class="user-info" >
+        <p class="text-info">Nombre: {{user?.username}}</p>
+        <p class="text-info">Edad: {{user?.birthdate}}</p>
+        <p class="text-info">Hobbies: {{user?.hobbies}}</p>
+      </div>
+    </ng-template>
 
     <input type="file" id="uploader" (change)="onFileChoose($event)" hidden="hidden" >
     <input type="button" id="cleanImg" (click)="resetImg()" hidden="hidden" >

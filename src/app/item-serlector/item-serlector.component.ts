@@ -27,9 +27,4 @@ export class ItemSerlectorComponent {
     [7, "Squirtle"],[8, "Wartortle"],[9, "Blastoise"]
   ]);
 
-  constructor(apiService: ApiService) {
-  }
-
-  onSelect(id:number){
-  }
 }

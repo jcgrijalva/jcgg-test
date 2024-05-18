@@ -77,11 +77,35 @@
   width: 270px;
 }
 
+.user-info {
+  text-align: left;
+  position: relative;
+  margin-top: 60px;
+  display: inline-block;
+  align-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 300px;
+}
+
+.text-info {
+  position: relative;
+  top: 60px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  line-height: auto;
+  color: #ffffff;
+}
 
 .input-attached_10-419 {
   position: relative;
   margin-top: 120px;
-  display: flex;
+  display: inline-block;
   align-content: center;
   align-items: center;
   flex-direction: column;

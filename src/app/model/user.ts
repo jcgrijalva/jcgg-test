@@ -1,7 +1,7 @@
 export interface User {
   username: string;
-  hobbies: [];
-  birthdate: Date;
+  hobbies: string[];
+  birthdate: string;
   document: string;
 }
 

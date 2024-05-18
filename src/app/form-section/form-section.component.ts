@@ -54,10 +54,11 @@ export class FormSectionComponent {
   maxDate: Date | undefined;
   public edad: string = '';
   public doc = '' ;
-  public birthday = '' ;
+  public birthday : any  ;
   public uname = '' ;
   tipoDocumento: string = 'Documento'
   docPattern: string = "(\\d{8})-(\\d{1})";
+  req : boolean = true;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -69,7 +70,8 @@ export class FormSectionComponent {
 
   announcer = inject(LiveAnnouncer);
 
-  constructor(private dateAdapter: DateAdapter<Date>,private router: Router, private appService : AppService) {
+  constructor(private dateAdapter: DateAdapter<Date>,private router: Router,
+              private appService : AppService) {
 
     this.dateAdapter.setLocale('es');
     this.appService.getEdad.subscribe(ed => this.edad = ed);
@@ -82,10 +84,13 @@ export class FormSectionComponent {
       this.minDate = new Date(currentYear - 18, 0, 1);
       this.docPattern='';
       this.tipoDocumento='Carnet de minoridad';
+      this.maxDate = new Date(currentYear + 0, 0, 1);
+      this.req = false;
     }else{
       this.minDate = new Date(currentYear - 120, 0, 1);
+      this.maxDate = new Date(currentYear -18, 0, 0, 1);
     }
-    this.maxDate = new Date(currentYear + 0, 0, 1);
+
   }
 
   add(event: MatChipInputEvent): void {
@@ -127,12 +132,25 @@ export class FormSectionComponent {
 
   sendInfo() {
     console.log("Submit info");
-    localStorage.setItem('nombre', this.uname);
-    localStorage.setItem('cumple', this.birthday);
-    localStorage.setItem('documento', this.doc);
-    // @ts-ignore
-    localStorage.setItem('pasatiempos', this.chooses);
+    let user : User = {username:this.uname,hobbies:this.chooses,
+      birthdate:this.getAgeFromDateOfBirth(this.birthday),document: this.doc};
+    this.appService.setUserInfo(user);
+    this.appService.setModoProfile("Profile");
     this.router.navigate([`/loading`]);
+  }
+
+  getAgeFromDateOfBirth(dateOfBirth: Date): string {
+    const currentDate = new Date();
+
+    // @ts-ignore
+    const ageInMilliseconds = currentDate - dateOfBirth;
+    const ageInSeconds = ageInMilliseconds / 1000;
+    const ageInMinutes = ageInSeconds / 60;
+    const ageInHours = ageInMinutes / 60;
+    const ageInDays = ageInHours / 24;
+    const ageInYears = Math.floor(ageInDays / 365.25);
+
+    return `${ageInYears} años`;
   }
 
 }

@@ -1,9 +1,14 @@
 import {Component, Input} from '@angular/core';
+import {AppService} from "../app.service";
+import {NgIf} from "@angular/common";
+import {User} from "../model/user";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -16,13 +21,24 @@ export class ProfileComponent {
   public uploadIcon = "/assets/upload-icon.png";
   public deleteIcon = "";
   public actionMsg = "Adjunta una foto";
-  public displayConf = '';
+  public displayConf = true;
+  tmpImg = '';
+  modo : string = '';
+  user: User | undefined ;
 
-  constructor() {
-    let isLocalStorageAvailable = typeof localStorage !== 'undefined';
-    if (isLocalStorageAvailable){
-      // @ts-ignore
-      this.displayConf = localStorage.getItem('displayConf');
+  constructor(private appService: AppService) {
+
+    this.appService.getModoProfile.subscribe(mod => this.modo = mod);
+    this.appService.getImgProfile.subscribe(img => this.tmpImg = img);
+    this.appService.getUserInfo.subscribe(usr => this.user = usr);
+    console.log(this.modo);
+    if(this.tmpImg != ""){
+      this.profileImage = this.tmpImg;
+      this.imgStyle = "border-radius: 50%; background-color: #ffffff; padding: 10px;"
+    }
+    if(this.modo == "Profile"){
+      this.displayConf = false;
+      console.log(this.displayConf)
     }
   }
 
@@ -51,6 +67,7 @@ export class ProfileComponent {
       this.deleteIcon = "/assets/delete-profile-img.png";
       this.uploadIcon = "";
       localStorage.setItem('profileImg', this.profileImage);
+      this.appService.setImgProfile(this.profileImage);
     }
     this.message = '';
   }
@@ -63,5 +80,6 @@ export class ProfileComponent {
     this.actionMsg = "Adjunta una foto";
     this.imgStyle = ""
     localStorage.setItem('profileImg', '');
+    this.appService.setModoProfile('');
   }
 }
